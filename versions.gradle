@@ -1,0 +1,81 @@
+ext.deps = [:]
+
+def versions = [:]
+versions.kotlin = "1.3.21"
+versions.android_gradle_plugin = "3.3.1"
+versions.support = "28.0.0"
+versions.constraint_layout = "1.1.3"
+versions.lifecycle = "1.1.0"
+versions.dagger = "2.22.1"
+versions.rxjava = "2.2.6"
+versions.rxandroid = "2.1.0"
+versions.rxkotlin = "2.3.0"
+versions.retrofit = "2.5.0"
+versions.logging_interceptor = "3.12.1"
+versions.junit = "4.12"
+versions.test_runner = "1.0.2"
+
+def langs = [:]
+langs.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
+langs.kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+langs.kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+ext.langs = langs
+
+def build_versions = [:]
+build_versions.min_sdk = 28
+build_versions.target_sdk = 28
+build_versions.version_code = 1
+build_versions.version_name = "1.0.0"
+ext.build_versions = build_versions
+
+def support = [:]
+support.appcompat = "com.android.support:appcompat-v7:$versions.support"
+support.support = "com.android.support:support-v4:$versions.support"
+support.annotatoin = "com.android.support:support-annotations:$versions.support"
+support.design = "com.android.support:design:$versions.support"
+support.cardview = "com.android.support:cardview-v7:$versions.support"
+support.recyclerview = "com.android.support:recyclerview-v7:$versions.support"
+support.constraintlayout = "com.android.support.constraint:constraint-layout:$versions.constraint_layout"
+deps.support = support
+
+def lifecycle = [:]
+lifecycle.extensions = "android.arch.lifecycle:extensions:$versions.lifecycle"
+lifecycle.viewmodel = "android.arch.lifecycle:viewmodel:$versions.lifecycle"
+
+deps.lifecycle = lifecycle
+
+def dagger = [:]
+dagger.dagger = "com.google.dagger:dagger:$versions.dagger"
+dagger.compiler = "com.google.dagger:dagger-compiler:$versions.dagger"
+dagger.android = "com.google.dagger:dagger-android:$versions.dagger"
+dagger.androidsupport = "com.google.dagger:dagger-android-support:$versions.dagger"
+dagger.processor = "com.google.dagger:dagger-android-processor:$versions.dagger"
+deps.dagger = dagger
+
+def rxjava = [:]
+rxjava.rxjava = "io.reactivex.rxjava2:rxjava:$versions.rxjava"
+rxjava.rxandroid = "io.reactivex.rxjava2:rxandroid:$versions.rxandroid"
+rxjava.rxkotlin = "io.reactivex.rxjava2:rxkotlin:$versions.rxkotlin"
+deps.rxjava = rxjava
+
+def retrofit = [:]
+retrofit.retrofit = "com.squareup.retrofit2:retrofit:$versions.retrofit"
+retrofit.rxjava = "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
+retrofit.gson = "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+retrofit.interceptor = "com.squareup.okhttp3:logging-interceptor:$versions.logging_interceptor"
+deps.retrofit = retrofit
+
+def test = [:]
+test.junit = "junit:junit:$versions.junit"
+test.runner = "com.android.support.test:runner:$versions.test_runner"
+deps.test = test
+
+
+
+def addRepos(RepositoryHandler handler) {
+    handler.google()
+    handler.jcenter()
+    handler.maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+}
+
+ext.addRepos = this.&addRepos

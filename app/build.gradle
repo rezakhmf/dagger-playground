@@ -1,0 +1,61 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion build_versions.min_sdk
+    defaultConfig {
+        applicationId "com.reza.employee"
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode build_versions.version_code
+        versionName build_versions.version_name
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation langs.kotlin_stdlib
+    // Android
+    implementation deps.support.appcompat
+    implementation deps.support.support
+    implementation deps.support.annotatoin
+    implementation deps.support.design
+    implementation deps.support.constraintlayout
+    implementation deps.support.cardview
+    implementation deps.support.recyclerview
+    implementation deps.lifecycle.extensions
+    implementation deps.lifecycle.viewmodel
+
+    // Dagger 2
+    implementation deps.dagger.dagger
+    annotationProcessor deps.dagger.compiler
+    implementation deps.dagger.android
+    implementation deps.dagger.androidsupport
+    annotationProcessor deps.dagger.processor
+    kapt deps.dagger.compiler
+    kapt deps.dagger.processor
+
+    // Rxjava 2
+    implementation deps.rxjava.rxjava
+    implementation deps.rxjava.rxandroid
+    implementation deps.rxjava.rxkotlin
+
+    // Retrofit
+    implementation deps.retrofit.retrofit
+    implementation deps.retrofit.rxjava
+    implementation deps.retrofit.gson
+    implementation deps.retrofit.interceptor
+
+    // Test
+    testImplementation deps.test.junit
+    androidTestImplementation deps.test.runner
+}
